@@ -11,11 +11,16 @@ public class Course {
     private String name;
     private String description;
     private List<Student> students;
+    private Teacher teacher;
 
-    public Course(Long courseId, String name, String description, List<Student> students) {
-        this.courseId = courseId;
+    public Course(String name, String description, Long id, List<Student> students, Teacher teacher) {
+        if(id == null)
+            this.courseId = (long) (Math.random() * 1000);
+        else
+            this.courseId = id;
         this.name = name;
         this.description = description;
         this.students = students;
+        this.teacher = teacher;
     }
 }

@@ -28,11 +28,6 @@ public class StudentEnrollmentSummary extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        if(req.getSession().getAttribute("courseID") == null)
-        {
-            resp.sendRedirect("/listCourses");
-            return;
-        }
         WebContext context = new WebContext(req, resp, req.getServletContext());
         String studentUsername = (String) req.getSession().getAttribute("studentUsername");
         String id = (String) req.getSession().getAttribute("courseID");

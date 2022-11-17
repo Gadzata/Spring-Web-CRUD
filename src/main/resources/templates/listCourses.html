@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>Welcome and Choose a Course</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <style type="text/css">
         body {
             width: 800px;
@@ -16,15 +17,85 @@
 </header>
 <main>
     <h2>Choose course:</h2>
-    <form th:method="POST" th:action="@{/listCourses}">
-        <div th:each="course : ${listCourses}">
-            <input type="radio" th:id="${course.getCourseId()}"    name="courseId" th:value="${course.getCourseId()}">
-            <label th:for="${course.getCourseId()}"> <th:block th:text="${course.getName()}"> </th:block>  </label>
-        </div>
+    <div class="container mb-4">
+        <div class="row">
+            <div class="col-12" th:if="${listCourses.size() == 0}">
+                <h2 class="text-lg-center" style="color: dimgray">No courses, add one?</h2>
+            </div>
+            <div class="col-12" th:if="${listCourses.size() > 0}">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th scope="col">Course name</th>
+                            <th scope="col">Teacher</th>
+                            <th scope="col">Course description</th>
+                            <th scope="col">Student count</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="course : ${listCourses}" class="course">
+                            <td th:text="${course.getName()}"></td>
+                            <td th:text="${course.getTeacher().getName()}"></td>
+                            <td th:text="${course.getDescription()}"></td>
+                            <td th:text="${course.getStudents().size()}"></td>
+                            <td class="text-right">
+                                <th:block>
+                                    <form th:action="@{'/courses/delete/{id}' (id=${course.getCourseId()})}"
+                                          th:method="DELETE">
+                                        <button type="submit"
+                                                class="btn btn-sm btn-danger">
+                                            <i>Delete</i>
+                                        </button>
+                                    </form>
+                                </th:block>
+                                <br/>
+                                <th:block >
+                                    <form th:action="@{'/courses/edit-form/{id}' (id=${course.getCourseId()})}">
+                                        <button type="submit"
+                                                class="btn btn-sm btn-info edit-product">
+                                            <i>Edit</i>
+                                        </button>
+                                    </form>
+                                </th:block>
 
-        <br/>
-        <button id="submit" type="submit">Submit</button>
+                                <br/>
+                                <form th:action="@{'/courses'}" th:method="POST">
+                                    <input class="btn btn-sm btn-primary " type="hidden" th:id="${course.getCourseId()}" th:for="${course.getCourseId()}" name="courseId" th:value="${course.getCourseId()}">
+                                    <button type="submit" th:value="${course.getCourseId()}"
+                                            class="btn btn-sm btn-primary ">
+                                        <i class="fa fa-trash">Select</i>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col mb-3">
+                <div class="row">
+                    <div class="col-sm-12 col-md-12">
+                        <a href="/courses/add" class="btn btn-block btn-dark add-product-btn">
+                            Add new product
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--
+    <form id="formPost" th:method="POST">
+        <li th:each="course : ${listCourses}">
+            <input type="radio" th:name="courseSelect" th:value="${course.getCourseId()}">
+            <th:block th:text="${course.getName()}"></th:block>
+            <form th:method="GET" th:action="@{'/courses/delete/{id}' (id=${course.getCourseId()})}">
+                <button type="submit">Delete</button>
+            </form>
+        </li>
+        <button type="submit">Submit</button>
     </form>
+    ...-->
 </main>
 </body>
 </html>
