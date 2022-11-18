@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Welcome and Choose a Course</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style type="text/css">
+        body {
+            width: 800px;
+            margin: auto;
+        }
+    </style>
+</head>
+<body><
+<th:block xmlns:th="http://www.thymeleaf.org">
+    <section class="jumbotron text-center">
+        <div class="container">
+            <h1 class="jumbotron-heading">Edit Course</h1>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5">
+                <form th:action="@{'/courses/add'}" th:method="POST">
+                    <input id="id" type="hidden" name="id" th:value="(${courseName} != null ? ${courseName} : '')">
+                    <div class="form-group">
+                        <label for="nameCourse">Course Name</label>
+                        <input type="text"
+                               class="form-control"
+                               id="nameCourse"
+                               name="nameCourse"
+                               th:value="(${courseName} != null ? ${courseName} : '')"
+                               required
+                               placeholder="Enter Course Name">
+                    </div>
+                    <!--
+                    <div class="form-group">
+                        <label for="IdCourse">CourseID</label>
+                        <input type="text"
+                               class="form-control"
+                               id="IdCourse"
+                               name="IdCourse"
+                               th:value="(${courseID} != null ? ${courseID} : '')"
+                               placeholder="CourseId or Leave it Blank">
+                    </div>
+                    ...-->
+                    <input id="IdCourse" type="hidden" name="IdCourse" th:value="(${courseID} != null ? ${courseID} : '')">
+                    <div class="form-group">
+                        <label for="desccription">Description</label>
+                        <input type="text"
+                               class="form-control"
+                               id="desccription"
+                               name="desccription"
+                               th:value="(${description} != null ? ${description} : '')"
+                               placeholder="Description">
+                    </div>
+                    <div class="form-group">
+                        <label>Teachers</label>
+                        <select name="teacherId" class="form-control">
+                            <option th:if="${teachers} != null" th:id="teacherId" th:name="teacherId"
+                                    th:selected="${teacherSelect != null && teacherSelect.getId() == teacher.getId()}"
+                                    th:each="teacher : ${teachers}"
+                                    th:value="${teacher.getId()}"
+                                    th:text="${teacher.getName()} +' '+ ${teacher.getSurname()}">
+                            </option>
+                        </select>
+                    </div>
+                    <button id="submit" type="submit" class="btn btn-primary">Submit</button>
+                    <a type="button" class="btn btn-primary" href="/courses">Back</a>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+</th:block>
+</body>
+<html>
