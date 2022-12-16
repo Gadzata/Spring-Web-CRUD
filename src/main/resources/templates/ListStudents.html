@@ -25,6 +25,7 @@
       <input type="radio" th:id ="${student.getName()}"  name="studentId" th:value="${student.getUsername()}">
       <label th:for="${student.getName()}">
         <th:block th:text="${student.getName()}"> </th:block> <th:block th:text="${student.getSurname()}"> </th:block>
+        <th:block th:each="grade: ${student.getGrades()}" th:text="${grade.getCourse().getCourseId().equals(courseIdLong)} ? ${grade.getGrade()} : ''"></th:block>
       </label>
     </div>
 

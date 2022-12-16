@@ -17,10 +17,10 @@ public class DataHolderT {
     @PostConstruct
     public void init()
     {
-        teachers.add(new Teacher( (long)1, "Goran", "Velinov"));
-        teachers.add(new Teacher( (long)2, "Sasho", "Gramatikov"));
-        teachers.add(new Teacher( (long)3, "Dimitar", "Trajanov"));
-        teachers.add(new Teacher( (long)4, "Kostadin", "Mishev"));
-        teachers.add(new Teacher( (long)5, "Riste", "Stojanov"));
+        //teachers.add(new Teacher( (long)1, "Goran", "Velinov"));
+        //.add(new Teacher( (long)2, "Sasho", "Gramatikov"));
+        //.add(new Teacher( (long)3, "Dimitar", "Trajanov"));
+        //teachers.add(new Teacher( (long)4, "Kostadin", "Mishev"));
+        //teachers.add(new Teacher( (long)5, "Riste", "Stojanov"));
     }
 }

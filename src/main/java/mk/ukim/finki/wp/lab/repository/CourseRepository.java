@@ -40,7 +40,7 @@ public class CourseRepository {
     public String saveCourse(String name, String description, Teacher teacher)
     {
         DataHolderW.courses.removeIf(i -> i.getName().equals(name));
-        Course newCourse = new Course(name, description, null, new ArrayList<Student>(), teacher);
+        Course newCourse = new Course(name, description, new ArrayList<Student>(), teacher);
         DataHolderW.courses.add(newCourse);
         return name;
     }

@@ -16,12 +16,12 @@ public class DataHolderW {
 
     @PostConstruct
     public void init(){
-        List<Student> listStudents = DataHolderS.students;
+/*        List<Student> listStudents = DataHolderS.students;
         List<Teacher> listTeachers = DataHolderT.teachers;
         courses.add(new Course("Veb programiranje", "Web Spring",null ,new ArrayList<>(listStudents.subList(1,2)), listTeachers.get(0)));
         courses.add(new Course("Operativni Sistemi", "OS Windows",null ,new ArrayList<>(listStudents.subList(3,4)),listTeachers.get(1)));
         courses.add(new Course("Napredno Programiranje", "Java", null ,new ArrayList<>(listStudents.subList(0,2)),listTeachers.get(2)));
         courses.add(new Course("Mrezi", "Networks", null ,new ArrayList<>(listStudents.subList(2,4)), listTeachers.get(3)));
-        courses.add(new Course("Verojatnost i Statistika", "Verojatnosti", null ,new ArrayList<>(listStudents.subList(0,4)),listTeachers.get(4)));
+        courses.add(new Course("Verojatnost i Statistika", "Verojatnosti", null ,new ArrayList<>(listStudents.subList(0,4)),listTeachers.get(4)));*/
     }
 }
